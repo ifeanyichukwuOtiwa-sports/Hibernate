@@ -1,0 +1,40 @@
+/**
+ * The buildScript block determines which plugins, task classes, and other classes are available for use
+ * in the rest of the build script. Without a buildScript block, you can use everything that ships with
+ * Gradle out-of-the-box. If you additionally want to use third-party plugins, task classes, or other
+ * classes (in the build script!), you have to specify the corresponding dependencies in the buildScript
+ * block.
+ */
+buildscript {
+
+    repositories {
+        maven {
+            mavenCentral()
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    // everything listed in the dependencies is actually a plugin,
+    // which we'll do "apply plugin" in our module level gradle file.
+
+    dependencies {
+        //classpath("org.jfrog.buildinfo:build-info-extractor-gradle:latest.release")
+        //gradle-release is a plugin for providing a Maven-like release process to project using Gradle that supports git,
+        // subversion bazaar and mercurial
+        classpath("net.researchgate:gradle-release:${researchgate_gradle_release_version}")
+
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_gradle_plugin_version}")
+        classpath("com.google.protobuf:protobuf-gradle-plugin:${protobuf_gradle_version}")
+
+
+        //Gradle plugin for managing Docker images and containers using via its remote API
+        classpath("com.bmuschko:gradle-docker-plugin:${gradle_docker_plugin_version}")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarqube_gradle_plugin_version}")
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "${sonarqube_gradle_plugin_version}"
+}
+
+apply from: "${project.rootDir}/gradle/config/core.gradle"
