@@ -1,4 +1,4 @@
 rootProject.name = 'BeginningHibernate6'
 
-include "Chapter01"
-include "Preliminary"
+include ":Chapter01"
+include ":Preliminary"

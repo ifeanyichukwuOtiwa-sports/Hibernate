@@ -1,0 +1,19 @@
+<!--<?xml version='1.0' encoding='utf-8'?>-->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration> <!--A-->
+    <session-factory> <!--B-->
+        <property name="hibernate.connection.driver_class"> <!--C-->
+            com.mysql.cj.jdbc.Driver
+        </property> <!--C-->
+        <property name="hibernate.connection.url"> <!--D-->
+            jdbc:mysql://localhost:3306/CH02
+        </property> <!--D-->
+        <property name="hibernate.connection.username">root</property> <!--E-->
+        <property name="hibernate.connection.password">123456</property> <!--F-->
+        <property name="hibernate.connection.pool_size">50</property> <!--G-->
+        <property name="show_sql">true</property> <!--H-->
+        <property name="hibernate.hbm2ddl.auto">create</property> <!--I-->
+    </session-factory>
+</hibernate-configuration>
